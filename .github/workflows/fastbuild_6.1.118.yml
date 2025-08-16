@@ -25,12 +25,12 @@ on:
           - 'sukisu'
           - 'ksunext'
       hook_method:
-        description: hook模式(大部分情况manual即可，少数需切换sus su模式的场景才需要kprobes钩子)
+        description: hook模式(大部分情况tracepoint即可，少数需切换sus su模式的场景才需要kprobes钩子)
         required: true
         type: choice
-        default: 'manual'
+        default: 'tracepoint'
         options:
-          - 'manual'
+          - 'tracepoint'
           - 'kprobes'
       kpm_enable:
         description: '是否开启kpm(仅对sukisu生效;可能轻微增加耗电，不需要可关闭)'
@@ -322,11 +322,11 @@ jobs:
           if [ "${{ github.event.inputs.hook_method }}" == "kprobes" ]; then
             echo "正在开启kprobes钩子..."
             echo "CONFIG_KSU_SUSFS_SUS_SU=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_KSU_MANUAL_HOOK=n" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_KSU_TRACEPOINT_HOOK=n" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_KSU_KPROBES_HOOK=y" >> ./common/arch/arm64/configs/gki_defconfig
           else
-            echo "正在开启manual钩子..."
-            echo "CONFIG_KSU_MANUAL_HOOK=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "正在开启tracepoint钩子..."
+            echo "CONFIG_KSU_TRACEPOINT_HOOK=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> ./common/arch/arm64/configs/gki_defconfig
           fi
           echo "CONFIG_KSU_SUSFS=y" >> ./common/arch/arm64/configs/gki_defconfig
