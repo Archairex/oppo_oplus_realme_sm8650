@@ -585,7 +585,7 @@ jobs:
       - name: 上传 ZIP 工件
         uses: actions/upload-artifact@v4
         with:
-          name: Kernel_ZIP_Artifacts
+          name: Kernel_ZIP
           path: ${{ github.workspace }}/kernel_workspace/AnyKernel*.zip
 
   release:
@@ -600,7 +600,7 @@ jobs:
       - name: 下载 ZIP 工件
         uses: actions/download-artifact@v4
         with:
-          name: Kernel_ZIP_Artifacts
+          name: Kernel_ZIP
           path: ./release_zips
 
       - name: 设置环境变量
