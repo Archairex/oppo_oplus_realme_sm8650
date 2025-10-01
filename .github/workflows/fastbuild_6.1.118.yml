@@ -25,12 +25,13 @@ on:
           - 'sukisu'
           - 'ksunext'
       hook_method:
-        description: hook模式(大部分情况manual即可，少数需切换sus su模式的场景才需要kprobes钩子)
+        description: hook模式(大部分情况manual即可，若新版manual钩子出现问题可尝试syscall, 少数需切换sus su模式的场景才需要kprobes钩子)
         required: true
         type: choice
         default: 'manual'
         options:
           - 'manual'
+          - 'syscall'
           - 'kprobes'
       kpm_enable:
         description: '是否开启kpm(仅对sukisu生效;可能轻微增加耗电，不需要可关闭)'
