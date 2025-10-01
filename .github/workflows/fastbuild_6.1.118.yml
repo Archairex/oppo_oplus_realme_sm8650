@@ -259,7 +259,7 @@ jobs:
             sed -i "s/DKSU_VERSION=11998/DKSU_VERSION=${KSU_VERSION}/" kernel/Makefile
           fi
 
-            - name: 应用 KernelSU & SUSFS 补丁
+      - name: 应用 KernelSU & SUSFS 补丁
         run: |
           cd kernel_workspace
           if [[ ${{ github.event.inputs.ksu_type }} == "sukisu" ]]; then
